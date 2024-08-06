@@ -29,7 +29,7 @@ func main() {
 
 	// fmt.Printf("Yo mido %.3f pulgadas ", height/0.0256)
 
-	var age int = 0
+	var age float64 = 0
 	var name string = ""
 	var lastName string = ""
 	// var numberPets int = 0
@@ -51,13 +51,18 @@ func main() {
 	lastName = lastName[:len(lastName)-1]
 
   var input string = ""
-	fmt.Print("escribe tu edad en años")
+	fmt.Print("escribe tu edad en años y meses: ")
 	input, _ = reader.ReadString('\n')
 	input = input[:len(input)-1]
-	age, err = strconv.Atoi(input)
+
+	// Declaramos una variable age y una variable err,
+	// y con ParseFloat recibimos el strig "texto" y también recibe el grado de precisión
+	// convirtiéndolo en decimal.
+	age, err := strconv.ParseFloat(input, 2)
 	if err != nil {
-		panic("Debes escribir un número entero")
+		panic("Debes escribir un número decimal (ex. 32.6)")
 	}
 
-  fmt.Printf("¡Hola!, %s %s. Tu edad en días es\n", lastName, name)
+// ¡Hola! <name> <lastname>. Tu edad en días es <age (days)> y en meses es de <age (months)>
+  fmt.Printf("¡Hola!, %s %s. Tu edad en días es %.2f\n", name, lastName, age * 365)
 }
