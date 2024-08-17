@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
+	// TODO: Instalar e importar la libreria Strcase
 )
 
 var options string = `
@@ -25,48 +27,57 @@ Seleccione una opción:
 `
 
 func main() {
-	var input string = ""
 	var reader *bufio.Reader = bufio.NewReader(os.Stdin)
 	fmt.Println(options)
-	input, _ = reader.ReadString('\n')
+	// Declaramos una variable input recibiendo lo que el usuario ingrese hasta que le de enter.
+	input, _ := reader.ReadString('\n')
 	input = input[:len(input)-1]
 
-	// Declaramos una variable age y una variable err,
-	// y con ParseFloat recibimos el string "texto" y también recibe el grado de precisión
-	// convirtiéndolo en decimal.
+	// Declaramos una variable option y una variable err,
+	// y con la función Atoi recibimos el string input convirtiendo el texto en un entero
 	option, err := strconv.Atoi(input)
 	if err != nil {
 		panic("Debes escribir un número entre el 1 y el 12")
 	}
-	fmt.Println(option)
-	/*var age float64 = 0
-		var name string = ""
-		var lastName string = ""
-
-	  // indicamos al usuario lo que debe escribir y al final dar a enter, para que
-		// quede guardado en la variable name
-		fmt.Print("escribe tu nombre: ")
-		// Una vez finalice el mensaje darle a enter
-		name, _ = reader.ReadString('\n')
-		name = name[:len(name)-1]
-
-		// Te pide escribir tu apellido
-		fmt.Print("escribe tu apellido: ")
-		// Una vez hecho darle enter para que quede guardo en la variable lastName
-	  lastName, _ = reader.ReadString('\n')
-		lastName = lastName[:len(lastName)-1]
-
-
-
-		// Declaramos una variable age y una variable err,
-		// y con ParseFloat recibimos el string "texto" y también recibe el grado de precisión
-		// convirtiéndolo en decimal.
-		age, err := strconv.ParseFloat(input, 2)
-		if err != nil {
-			panic("Debes escribir un número decimal (ex. 32.6)")
+	// if option < 1 && option > 12
+	if option >= 1 && option <= 12 {
+		if option == 1 {
+			fmt.Println("Introduzca un texto")
+			in, _ := reader.ReadString('\n')
+			fmt.Println(strings.Title(strings.ToLower(in)))
+		} else if option == 2 {
+			fmt.Println("Introduzca un texto")
+			in, _ := reader.ReadString('\n')
+			fmt.Println(strings.ToLower(in))
+		} else if option == 3 {
+			fmt.Println("Introduzca un texto")
+			in, _ := reader.ReadString('\n')
+			fmt.Println(strings.ToUpper(in))
+		} else if option == 4 {
+			fmt.Println("Convertir a Camel case (ex. camelCase)")
+			// TODO: Indicarle al usuario a traves de un Print que debe ingresar texto
+			// TODO: Uso la función que me permite tomar texto de la terminal y lo guardo en una variable
+			// TODO: Usar la libreria Strcase para convertir el texto, dentro de un Print
+		} else if option == 5 {
+			fmt.Println("Convertir a Snake case (ex. snake_case)")
+		} else if option == 6 {
+			fmt.Println("Convertir a Pascal case (ex. PascalCase)")
+		} else if option == 7 {
+			fmt.Println("Convertir a Kebab case (ex. kebab-case)")
+		} else if option == 8 {
+			fmt.Println("Convertir tu edad en años a días, semanas y meses")
+		} else if option == 9 {
+			fmt.Println("Convertir tu peso de kilogramos a libras")
+		} else if option == 10 {
+			fmt.Println("Convertir tu estatura de metros a pulgadas")
+		} else if option == 11 {
+			fmt.Println("Calcular tu índice de masa corporal imc")
+		} else if option == 12 {
+			fmt.Println("Mostrar mi resumen")
 		}
+	}
 
 	// ¡Hola! <name> <lastname>. Tu edad en días es <age (days)>, en semanas es de <age (weeks)> y en meses es de <age (months)>
-	  fmt.Printf("¡Hola!, %s %s. Tu edad en días es %.2f, en semanas es de %.2f y en meses es de %.2f \n",
-			 name, lastName, age * 365, age * 52, age * 12)*/
+	/* fmt.Printf("¡Hola!, %s %s. Tu edad en días es %.2f, en semanas es de %.2f y en meses es de %.2f \n",
+	name, lastName, age * 365, age * 52, age * 12)*/
 }
